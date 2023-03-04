@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+openapi/generated
 
 # Node
 /node_modules

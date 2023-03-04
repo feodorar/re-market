@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: ReMarket API
+  version: 0.0.1
+paths:
+  /offers:
+    get:
+      tags:
+        - offers
+      summary: Get all offers
+      operationId: getAllOffers
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OfferPreview"
+  /offers/{offerId}:
+    get:
+      tags:
+        - offers
+      summary: Get an offer by its id
+      operationId: getOfferById
+      parameters:
+        - name: offerId
+          in: path
+          description: ID of offer to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OfferDetails"
+  /offers/{offerId}/purchase:
+    post:
+      tags:
+        - offers
+      summary: Purchase an offer
+      operationId: purchaseOffer
+      parameters:
+        - name: offerId
+          in: path
+          description: ID of offer to purchase
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+  /offers/{offerId}/upvote:
+    post:
+      tags:
+        - offers
+      summary: Upvote an offer
+      operationId: upvoteOffer
+      parameters:
+        - name: offerId
+          in: path
+          description: ID of offer to vote up
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+  /offers/{offerId}/downvote:
+    post:
+      tags:
+        - offers
+      summary: Downvote an offer
+      operationId: downvoteOffer
+      parameters:
+        - name: offerId
+          in: path
+          description: ID of offer to vote down
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+  /user/login:
+    get:
+      tags:
+        - auth
+      summary: Logs user into the system
+      description: ""
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: false
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: Invalid username/password supplied
+  /user/logout:
+    get:
+      tags:
+        - auth
+      summary: Logs out current logged in user session
+      description: ""
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+components:
+  schemas:
+    OfferPreview:
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        coverPath:
+          type: string
+        merchantName:
+          type: string
+        price:
+          type: number
+        voteCount:
+          type: number
+      required:
+        - id
+        - title
+        - merchantName
+        - price
+        - voteCount
+    OfferDetails:
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        coverPath:
+          type: string
+        merchantName:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        voteCount:
+          type: number
+      required:
+        - id
+        - title
+        - merchantName
+        - price
+        - voteCount

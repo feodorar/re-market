@@ -1,0 +1,23 @@
+<form [formGroup]="form" class="login-modal container d-flex flex-column align-items-center">
+    <div class="row align-self-end">
+        <button (click)="closeLoginModal()">x</button>
+    </div>
+    <div class="row">
+        <h1>Login</h1>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <input placeholder="Username" formControlName="usernameControl"/>
+            <div class="text-danger" *ngIf="usernameControl.touched && usernameControl.errors?.['required']">Pflichtfeld</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <input type="password" placeholder="Passwort" formControlName="passwordControl"/>
+            <div class="text-danger" *ngIf="passwordControl.touched && passwordControl.errors?.['required']">Pflichtfeld</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12"><button (click)="login()" [disabled]="form.invalid">Login</button></div>
+    </div>
+</form>

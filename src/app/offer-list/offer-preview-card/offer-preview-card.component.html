@@ -1,0 +1,9 @@
+<div *ngIf="offerPreview" class="offer-card d-flex flex-column align-items-center p-2 my-3">
+    <ry-vote class="w-100" [voteCount]="offerPreview.voteCount" (voteDownEvent)="voteDown()" (voteUpEvent)="voteUp()"></ry-vote>
+    <a class="offer-card__content" href="/offers/{{offerPreview.id}}">
+        <img class="d-block w-100" src="{{'assets/images/no-product-image.png'}}">
+        <span class="offer-title my-2">{{offerPreview.title}}</span>
+        <span class="offer-price font-weight-bold">{{offerPreview.price}} €</span>
+    </a>
+    <button class="my-2" (click)="purchaseOffer()">Kaufen</button>
+</div>
