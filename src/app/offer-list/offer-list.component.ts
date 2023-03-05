@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { OfferPreview } from 'openapi/generated';
 import { actionLoadAllOffers } from '../store/offers/offers.actions';
-import { selectAllOffersSortedByVoted } from '../store/offers/offers.selectors';
+import {
+  selectAllOffersSortedByVoted,
+  selectMoreOffersToLoad,
+} from '../store/offers/offers.selectors';
 import {
   actionPurchaseOffer,
   actionVoteOffer,
 } from '../store/offers/offers.actions';
 import { AppState } from '../store/root.elements';
+
+export const OFFER_LIST_PAGE_SIZE = 20;
 
 @Component({
   selector: 'ry-offer-list',
@@ -16,11 +21,12 @@ import { AppState } from '../store/root.elements';
 })
 export class OfferListComponent implements OnInit {
   offers$ = this.store.select(selectAllOffersSortedByVoted);
+  moreToLoad$ = this.store.select(selectMoreOffersToLoad);
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(actionLoadAllOffers());
+    this.loadMore();
   }
 
   purchaseOffer(offer: OfferPreview): void {
@@ -34,6 +40,12 @@ export class OfferListComponent implements OnInit {
   downvoteOffer(offer: OfferPreview): void {
     this.store.dispatch(
       actionVoteOffer({ offerId: offer.id, voteType: 'down' })
+    );
+  }
+
+  loadMore(): void {
+    this.store.dispatch(
+      actionLoadAllOffers({ pageSize: OFFER_LIST_PAGE_SIZE, page: 0 })
     );
   }
 }

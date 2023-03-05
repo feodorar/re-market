@@ -8,10 +8,11 @@ import { initialState } from './offers.model';
 
 export const offersReducer = createReducer(
   initialState,
-  on(actionLoadAllOffersSuccess, (state, { offers }) => {
+  on(actionLoadAllOffersSuccess, (state, { offerListPage }) => {
     return {
       ...state,
-      offers: [...offers],
+      offers: [...state.offers, ...offerListPage.offers],
+      totalCount: offerListPage.totalCount,
     };
   }),
   on(actionLoadOfferDetailsSuccess, (state, { offerDetails }) => {

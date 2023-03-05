@@ -1,46 +1,154 @@
 {
   "request": {
     "method": "GET",
-    "url": "/api/offers"
+    "urlPath": "/api/offers"
   },
   "response": {
     "status": 200,
-    "jsonBody": [
-      {
-        "id": "111",
-        "title": "Foo",
-        "price": 15.4,
-        "voteCount": 1,
-        "hasUserVotedForThis": false
-      },
-      {
-        "id": "222",
-        "title": "Bar",
-        "price": 3.99,
-        "voteCount": 15,
-        "hasUserVotedForThis": true
-      },
-      {
-        "id": "333",
-        "title": "Boo",
-        "price": 11.45,
-        "voteCount": 3,
-        "hasUserVotedForThis": false
-      },
-      {
-        "id": "444",
-        "title": "Far",
-        "price": 29.99,
-        "voteCount": 84,
-        "hasUserVotedForThis": false
-      },
-      {
-        "id": "555",
-        "title": "Thingy",
-        "price": 1.99,
-        "voteCount": 42,
-        "hasUserVotedForThis": true
-      }
-    ]
+    "jsonBody": {
+      "totalCount": 225,
+      "offers": [
+        {
+          "id": "111",
+          "title": "Foo",
+          "price": 15.4,
+          "voteCount": 1,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "222",
+          "title": "Bar",
+          "price": 3.99,
+          "voteCount": 15,
+          "hasUserVotedForThis": true
+        },
+        {
+          "id": "333",
+          "title": "Boo",
+          "price": 11.45,
+          "voteCount": 3,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "444",
+          "title": "Far",
+          "price": 29.99,
+          "voteCount": 84,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "555",
+          "title": "Thingy",
+          "price": 1.99,
+          "voteCount": 42,
+          "hasUserVotedForThis": true
+        },
+        {
+          "id": "666",
+          "title": "Foo",
+          "price": 15.4,
+          "voteCount": 1,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "777",
+          "title": "Bar",
+          "price": 3.99,
+          "voteCount": 15,
+          "hasUserVotedForThis": true
+        },
+        {
+          "id": "888",
+          "title": "Boo",
+          "price": 11.45,
+          "voteCount": 3,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "999",
+          "title": "Far",
+          "price": 29.99,
+          "voteCount": 84,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "000",
+          "title": "Thingy",
+          "price": 1.99,
+          "voteCount": 42,
+          "hasUserVotedForThis": true
+        },
+        {
+          "id": "1010",
+          "title": "Foo",
+          "price": 15.4,
+          "voteCount": 1,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "1111",
+          "title": "Bar",
+          "price": 3.99,
+          "voteCount": 15,
+          "hasUserVotedForThis": true
+        },
+        {
+          "id": "1212",
+          "title": "Boo",
+          "price": 11.45,
+          "voteCount": 3,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "1313",
+          "title": "Far",
+          "price": 29.99,
+          "voteCount": 84,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "1414",
+          "title": "Thingy",
+          "price": 1.99,
+          "voteCount": 42,
+          "hasUserVotedForThis": true
+        },
+        {
+          "id": "1515",
+          "title": "Foo",
+          "price": 15.4,
+          "voteCount": 1,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "1616",
+          "title": "Bar",
+          "price": 3.99,
+          "voteCount": 15,
+          "hasUserVotedForThis": true
+        },
+        {
+          "id": "1717",
+          "title": "Boo",
+          "price": 11.45,
+          "voteCount": 3,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "1818",
+          "title": "Far",
+          "price": 29.99,
+          "voteCount": 84,
+          "hasUserVotedForThis": false
+        },
+        {
+          "id": "1919",
+          "title": "Thingy",
+          "price": 1.99,
+          "voteCount": 42,
+          "hasUserVotedForThis": true
+        }
+      ]
+    }
   }
 }

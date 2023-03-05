@@ -9,15 +9,26 @@ paths:
         - offers
       summary: Get all offers
       operationId: getAllOffers
+      parameters:
+        - name: page
+          in: query
+          description: number of page to return
+          required: true
+          schema:
+            type: number
+        - name: pageSize
+          in: query
+          description: number of items per page
+          required: true
+          schema:
+            type: number
       responses:
         "200":
           description: Successful operation
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/OfferPreview"
+                $ref: "#/components/schemas/OfferListPage"
   /offers/{offerId}:
     get:
       tags:
@@ -142,6 +153,18 @@ paths:
           description: successful operation
 components:
   schemas:
+    OfferListPage:
+      properties:
+        totalCount:
+          type: number
+          description: "how many offers are there in total"
+        offers:
+          type: array
+          items:
+            $ref: "#/components/schemas/OfferPreview"
+      required:
+        - totalCount
+        - offers
     OfferPreview:
       properties:
         id:

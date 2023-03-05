@@ -1,10 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { OfferDetails, OfferPreview } from 'openapi/generated';
+import { OfferDetails, OfferListPage } from 'openapi/generated';
 
-export const actionLoadAllOffers = createAction('[Offers] Load all offer');
+export const actionLoadAllOffers = createAction(
+  '[Offers] Load all offers',
+  props<{ pageSize: number; page: number }>()
+);
 export const actionLoadAllOffersSuccess = createAction(
   '[Offers] Load all offers: success',
-  props<{ offers: OfferPreview[] }>()
+  props<{ offerListPage: OfferListPage }>()
 );
 export const actionLoadAllOffersError = createAction(
   '[Offers] Load all offer: error',

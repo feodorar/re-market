@@ -17,3 +17,10 @@ export const selectOfferById = (offerId: string) =>
   createSelector(selectOfferState, (state: OffersState) => {
     return state.offers.find((o) => o.id === offerId) as OfferDetails; // TODO: fix type of Offer in model
   });
+
+export const selectMoreOffersToLoad = createSelector(
+  selectOfferState,
+  (state: OffersState) => {
+    return state.totalCount ? state.offers.length < state.totalCount : true;
+  }
+);

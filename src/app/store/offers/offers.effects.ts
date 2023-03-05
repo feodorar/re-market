@@ -40,9 +40,9 @@ export class OffersEffects {
   loadOffers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actionLoadAllOffers),
-      exhaustMap(() =>
-        this.offersService.getAllOffers().pipe(
-          map((offers) => actionLoadAllOffersSuccess({ offers })),
+      exhaustMap((action) =>
+        this.offersService.getAllOffers(action.page, action.pageSize).pipe(
+          map((offerListPage) => actionLoadAllOffersSuccess({ offerListPage })),
           catchError((error) =>
             of(
               actionLoadAllOffersError({

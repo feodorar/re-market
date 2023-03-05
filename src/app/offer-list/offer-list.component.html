@@ -11,5 +11,6 @@
                 <button class="my-2" (click)="purchaseOffer(offer)">Kaufen</button>
             </div>
         </div>
+        <div *ngIf="(moreToLoad$ | async) === true" class="col-2"><button (click)="loadMore()">Mehr laden</button></div>
     </div>
 </div>
