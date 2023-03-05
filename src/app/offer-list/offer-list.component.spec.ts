@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialAppState } from '../store/root.elements';
 
 import { OfferListComponent } from './offer-list.component';
 
@@ -8,9 +10,9 @@ describe('OfferListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OfferListComponent ]
-    })
-    .compileComponents();
+      declarations: [OfferListComponent],
+      providers: [provideMockStore({ initialState: initialAppState })],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OfferListComponent);
     component = fixture.componentInstance;
