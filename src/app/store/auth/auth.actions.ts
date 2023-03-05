@@ -12,7 +12,7 @@ export const actionLogin = createAction(
 export const actionLoginSuccess = createAction('[Auth] Login: success');
 
 export const actionLoginError = createAction(
-  '[Auth] Login: success',
+  '[Auth] Login: error',
   props<{ error: Error; userFriendlyErrorMsg: string }>()
 );
 

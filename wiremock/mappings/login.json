@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/user/login"
+  },
+  "response": {
+    "status": 200
+  }
+}

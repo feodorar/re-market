@@ -28,4 +28,4 @@
 ### Other Principles
 
 - structured in feature modules (auth, offer-list, offer-details)
-- encapsulate everything that is used more than once (i.e. vote comp)
+- encapsulate everything that is used more than once (e.g. vote comp)

@@ -18,30 +18,28 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actionLogin),
-      switchMap((action) => {
-        return this.authService
-          .loginUser(action.username, action.password)
-          .pipe(
-            map(() => actionLoginSuccess()),
-            catchError((error) =>
-              of(
-                actionLoginError({
-                  error,
-                  userFriendlyErrorMsg:
-                    'Es ist ein Fehler beim Login aufgetreten.',
-                })
-              )
+      switchMap((action) =>
+        this.authService.loginUser(action.username, action.password).pipe(
+          map(() => actionLoginSuccess()),
+          catchError((error) =>
+            of(
+              actionLoginError({
+                error,
+                userFriendlyErrorMsg:
+                  'Es ist ein Fehler beim Login aufgetreten.',
+              })
             )
-          );
-      })
+          )
+        )
+      )
     )
   );
 
   logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actionLogout),
-      switchMap(() => {
-        return this.authService.logoutUser().pipe(
+      switchMap(() =>
+        this.authService.logoutUser().pipe(
           map(() => actionLogoutSuccess()),
           catchError((error) =>
             of(
@@ -52,8 +50,8 @@ export class AuthEffects {
               })
             )
           )
-        );
-      })
+        )
+      )
     )
   );
 }
