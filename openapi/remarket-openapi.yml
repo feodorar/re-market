@@ -150,12 +150,13 @@ components:
           type: string
         coverPath:
           type: string
-        merchantName:
-          type: string
         price:
           type: number
         voteCount:
           type: number
+        hasUserVotedForThis:
+          type: boolean
+          description: "has the user making this call already voted this offer. null if no logged in user"
       required:
         - id
         - title
@@ -163,21 +164,13 @@ components:
         - price
         - voteCount
     OfferDetails:
+      allOf:
+        - $ref: "#/components/schemas/OfferPreview"
       properties:
-        id:
-          type: string
-        title:
-          type: string
-        coverPath:
-          type: string
         merchantName:
           type: string
         description:
           type: string
-        price:
-          type: number
-        voteCount:
-          type: number
       required:
         - id
         - title

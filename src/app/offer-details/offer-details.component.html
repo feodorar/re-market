@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-4">
             <img class="offer-cover" src="{{'assets/images/no-product-image.png'}}">
-            <ry-vote [voteCount]="offer.voteCount" (voteDownEvent)="voteDown(offer)" (voteUpEvent)="voteUp(offer)"></ry-vote>
+            <ry-vote [voteCount]="offer.voteCount" [disabled]="offer.hasUserVotedForThis === true" (voteDownEvent)="voteDown(offer)" (voteUpEvent)="voteUp(offer)"></ry-vote>
         </div>
         <div class="col-4 d-flex flex-column">
             <h1>{{offer.title}}</h1>
-            <span>von {{offer.merchantName}}</span>
+            <span>von {{offer.details?.merchantName}}</span>
             <span class="mt-3">{{offer.details?.description ?? 'Aktuell haben wir leider keine Beschreibung zu diesem Artikel.'}}</span>
         </div>
         <div class="col-4 d-flex flex-column align-items-end">

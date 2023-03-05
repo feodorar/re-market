@@ -1,5 +1,5 @@
 <div class="w-100 d-flex justify-content-between offer-votes">
-    <button (click)="voteDown()">down</button>
+    <button (click)="voteDown()" [disabled]="disabled">down</button>
     <span>{{voteCount}}</span>
-    <button (click)="voteUp()">up</button>
+    <button (click)="voteUp()" [disabled]="disabled">up</button>
 </div>

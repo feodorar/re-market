@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class VoteComponent {
   @Input() voteCount?: number;
+  @Input() disabled = false;
   @Output() voteUpEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() voteDownEvent: EventEmitter<any> = new EventEmitter<any>();
 

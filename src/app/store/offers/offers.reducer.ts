@@ -17,9 +17,10 @@ export const offersReducer = createReducer(
   on(actionLoadOfferDetailsSuccess, (state, { offerDetails }) => {
     return {
       ...state,
-      offers: state.offers.map((o) =>
-        o.id === offerDetails.id ? offerDetails : o
-      ),
+      offers: [
+        ...state.offers.filter((o) => o.id !== offerDetails.id),
+        offerDetails,
+      ],
     };
   }),
   on(actionVoteOfferSuccess, (state, { offerId, voteType }) => {
