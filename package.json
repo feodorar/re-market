@@ -11,7 +11,9 @@
     "generate-api": "npx @openapitools/openapi-generator-cli generate -i openapi/remarket-openapi.yml -g typescript-angular -o openapi/generated",
     "start-wiremock": "java -jar e2e/wiremock-config/wiremock-standalone.jar --root-dir e2e/wiremock-config --port 9000 --local-response-templating",
     "start-prism-mockserver": "prism mock openapi/remarket-openapi.yml",
-    "cypress:open": "cypress open"
+    "e2e": "npm run start-wiremock & ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
