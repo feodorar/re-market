@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { OfferPreview } from 'openapi/generated';
-import { actionLoadAllOffers } from '../store/offer-list/offer-list.actions';
-import { selectAllOffersSortedByVoted } from '../store/offer-list/offer-list.selectors';
+import { actionLoadAllOffers } from '../store/offers/offers.actions';
+import { selectAllOffersSortedByVoted } from '../store/offers/offers.selectors';
 import {
   actionPurchaseOffer,
   actionVoteOffer,
-} from '../store/offer/offer.actions';
+} from '../store/offers/offers.actions';
 import { AppState } from '../store/root.elements';
 
 @Component({

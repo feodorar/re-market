@@ -1,46 +1,43 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { OfferDetails } from 'openapi/generated';
+import { Observable, of } from 'rxjs';
+import { selectOfferById } from '../store/offers/offers.selectors';
 import {
-  actionClearOfferDetails,
   actionLoadOfferDetails,
   actionPurchaseOffer,
   actionVoteOffer,
-} from '../store/offer/offer.actions';
-import { selectOfferDetails } from '../store/offer/offer.selectors';
+} from '../store/offers/offers.actions';
 import { AppState } from '../store/root.elements';
+import { Offer } from '../store/offers/offers.model';
 
 @Component({
-  selector: 'ry-offer',
-  templateUrl: './offer.component.html',
-  styleUrls: ['./offer.component.sass'],
+  selector: 'ry-offer-details',
+  templateUrl: './offer-details.component.html',
+  styleUrls: ['./offer-details.component.sass'],
 })
-export class OfferComponent implements OnInit, OnDestroy {
-  offerDetails$ = this.store.select(selectOfferDetails);
+export class OfferDetailsComponent implements OnInit {
+  offer$: Observable<Offer | undefined> = of();
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const offerId = this.route.snapshot.params?.['offerId'];
     this.store.dispatch(actionLoadOfferDetails({ offerId }));
+    this.offer$ = this.store.select(selectOfferById(offerId));
   }
 
-  voteUp(offer: OfferDetails): void {
+  voteUp(offer: Offer): void {
     this.store.dispatch(actionVoteOffer({ offerId: offer.id, voteType: 'up' }));
   }
 
-  voteDown(offer: OfferDetails): void {
+  voteDown(offer: Offer): void {
     this.store.dispatch(
       actionVoteOffer({ offerId: offer.id, voteType: 'down' })
     );
   }
 
-  purchaseOffer(offer: OfferDetails): void {
+  purchaseOffer(offer: Offer): void {
     this.store.dispatch(actionPurchaseOffer({ offerId: offer.id }));
-  }
-
-  ngOnDestroy(): void {
-    this.store.dispatch(actionClearOfferDetails());
   }
 }

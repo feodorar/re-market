@@ -1,11 +1,13 @@
 <div class="container">
     <div class="row">
-        <ry-offer-preview-card *ngFor="let offer of offers$ | async" [offerPreview]="offer" (purchaseOfferEvent)="purchaseOffer(offer)" (upvoteOfferEvent)="upvoteOffer(offer)" (downvoteOfferEvent)="downvoteOffer(offer)" class="col-3"></ry-offer-preview-card>
-        <ry-offer-preview-card *ngFor="let offer of offers$ | async" [offerPreview]="offer" (purchaseOfferEvent)="purchaseOffer(offer)" (upvoteOfferEvent)="upvoteOffer(offer)" (downvoteOfferEvent)="downvoteOffer(offer)" class="col-3"></ry-offer-preview-card>
-        <ry-offer-preview-card *ngFor="let offer of offers$ | async" [offerPreview]="offer" (purchaseOfferEvent)="purchaseOffer(offer)" (upvoteOfferEvent)="upvoteOffer(offer)" (downvoteOfferEvent)="downvoteOffer(offer)" class="col-3"></ry-offer-preview-card>
-        <ry-offer-preview-card *ngFor="let offer of offers$ | async" [offerPreview]="offer" (purchaseOfferEvent)="purchaseOffer(offer)" (upvoteOfferEvent)="upvoteOffer(offer)" (downvoteOfferEvent)="downvoteOffer(offer)" class="col-3"></ry-offer-preview-card>
-        <ry-offer-preview-card *ngFor="let offer of offers$ | async" [offerPreview]="offer" (purchaseOfferEvent)="purchaseOffer(offer)" (upvoteOfferEvent)="upvoteOffer(offer)" (downvoteOfferEvent)="downvoteOffer(offer)" class="col-3"></ry-offer-preview-card>
-        <ry-offer-preview-card *ngFor="let offer of offers$ | async" [offerPreview]="offer" (purchaseOfferEvent)="purchaseOffer(offer)" (upvoteOfferEvent)="upvoteOffer(offer)" (downvoteOfferEvent)="downvoteOffer(offer)" class="col-3"></ry-offer-preview-card>
-        <ry-offer-preview-card *ngFor="let offer of offers$ | async" [offerPreview]="offer" (purchaseOfferEvent)="purchaseOffer(offer)" (upvoteOfferEvent)="upvoteOffer(offer)" (downvoteOfferEvent)="downvoteOffer(offer)" class="col-3"></ry-offer-preview-card>
+        <div *ngFor="let offer of offers$ | async" class="col-3 offer-card d-flex flex-column align-items-center p-2 my-3">
+            <ry-vote class="w-100" [voteCount]="offer.voteCount" (voteDownEvent)="downvoteOffer(offer)" (voteUpEvent)="upvoteOffer(offer)"></ry-vote>
+            <div class="offer-card__content" routerLink="/offers/{{offer.id}}">
+                <img class="d-block w-100" src="{{'assets/images/no-product-image.png'}}">
+                <span class="offer-title my-2">{{offer.title}}</span>
+                <span class="offer-price font-weight-bold">{{offer.price}} €</span>
+            </div>
+            <button class="my-2" (click)="purchaseOffer(offer)">Kaufen</button>
+        </div>
     </div>
 </div>

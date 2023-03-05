@@ -5,16 +5,7 @@ import {
   actionLogoutSuccess,
   actionOpenLoginModal,
 } from './auth.actions';
-
-export interface AuthState {
-  showLoginModal: boolean;
-  isLoggedIn: boolean;
-}
-
-export const initialState: AuthState = {
-  showLoginModal: false,
-  isLoggedIn: false,
-};
+import { initialState } from './auth.model';
 
 export const authReducer = createReducer(
   initialState,

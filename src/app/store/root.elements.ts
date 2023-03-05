@@ -1,23 +1,18 @@
 import { AuthEffects } from './auth/auth.effects';
-import { authReducer, AuthState } from './auth/auth.reducer';
-import { OfferListEffects } from './offer-list/offer-list.effects';
-import {
-  offerListReducer,
-  OfferListState,
-} from './offer-list/offer-list.reducer';
-import { OfferEffects } from './offer/offer.effects';
-import { offerReducer, OfferState } from './offer/offer.reducer';
+import { AuthState } from './auth/auth.model';
+import { authReducer } from './auth/auth.reducer';
+import { OffersEffects } from './offers/offers.effects';
+import { OffersState } from './offers/offers.model';
+import { offersReducer } from './offers/offers.reducer';
 
 export const rootReducers = {
-  offerListState: offerListReducer,
-  offerState: offerReducer,
+  offerState: offersReducer,
   authState: authReducer,
 };
 
-export const rootEffects = [OfferListEffects, OfferEffects, AuthEffects];
+export const rootEffects = [OffersEffects, AuthEffects];
 
 export interface AppState {
-  offerListState: OfferListState;
-  offerState: OfferState;
+  offerState: OffersState;
   authState: AuthState;
 }

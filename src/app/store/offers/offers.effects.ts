@@ -3,11 +3,20 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { OffersService } from 'openapi/generated';
 import { of } from 'rxjs';
-import { map, catchError, switchMap, withLatestFrom } from 'rxjs/operators';
+import {
+  map,
+  exhaustMap,
+  catchError,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs/operators';
 import { actionOpenLoginModal } from '../auth/auth.actions';
 import { selectIsLoggedIn } from '../auth/auth.selectors';
 import { AppState } from '../root.elements';
 import {
+  actionLoadAllOffers,
+  actionLoadAllOffersError,
+  actionLoadAllOffersSuccess,
   actionLoadOfferDetails,
   actionLoadOfferDetailsError,
   actionLoadOfferDetailsSuccess,
@@ -17,15 +26,35 @@ import {
   actionVoteOffer,
   actionVoteOfferError,
   actionVoteOfferSuccess,
-} from './offer.actions';
+} from './offers.actions';
 
 @Injectable()
-export class OfferEffects {
+export class OffersEffects {
   constructor(
-    private actions$: Actions,
     private store: Store<AppState>,
+    private actions$: Actions,
     private offersService: OffersService
   ) {}
+
+  loadOffers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actionLoadAllOffers),
+      exhaustMap(() =>
+        this.offersService.getAllOffers().pipe(
+          map((offers) => actionLoadAllOffersSuccess({ offers })),
+          catchError((error) =>
+            of(
+              actionLoadAllOffersError({
+                error,
+                userFriendlyErrorMsg:
+                  'Es ist ein Fehler beim Laden der Angebote aufgetreten.',
+              })
+            )
+          )
+        )
+      )
+    )
+  );
 
   loadOfferById$ = createEffect(() =>
     this.actions$.pipe(
@@ -85,7 +114,12 @@ export class OfferEffects {
               ? this.offersService.upvoteOffer(action.offerId)
               : this.offersService.downvoteOffer(action.offerId);
           return endpoint.pipe(
-            map(() => actionVoteOfferSuccess({ offerId: action.offerId })),
+            map(() =>
+              actionVoteOfferSuccess({
+                offerId: action.offerId,
+                voteType: action.voteType,
+              })
+            ),
             catchError((error) =>
               of(
                 actionVoteOfferError({
@@ -103,12 +137,12 @@ export class OfferEffects {
     )
   );
 
-  reloadOfferDetails$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(actionVoteOfferSuccess),
-      switchMap((action) => {
-        return of(actionLoadOfferDetails({ offerId: action.offerId }));
-      })
-    )
-  );
+  // reloadOfferDetails$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(actionVoteOfferSuccess),
+  //     switchMap((action) => {
+  //       return of(actionLoadOfferDetails({ offerId: action.offerId }));
+  //     })
+  //   )
+  // );
 }

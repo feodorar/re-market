@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,9 +9,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { ApiModule, Configuration } from 'openapi/generated';
 import { HttpClientModule } from '@angular/common/http';
 import { rootEffects, rootReducers } from './store/root.elements';
-import { OfferModule } from './offer/offer.module';
+import { OfferDetailsModule } from './offer-details/offer-details.module';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     OfferListModule,
-    OfferModule,
+    OfferDetailsModule,
     AuthModule,
     SharedModule,
     HttpClientModule,
@@ -30,6 +31,7 @@ import { SharedModule } from './shared/shared.module';
     }),
     StoreModule.forRoot(rootReducers),
     EffectsModule.forRoot(rootEffects),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
   bootstrap: [AppComponent],
