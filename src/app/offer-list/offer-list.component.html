@@ -4,7 +4,7 @@
             <div class=" offer-card d-flex flex-column align-items-center">
                 <ry-vote class="w-100" [voteCount]="offer.voteCount" [disabled]="offer.hasUserVotedForThis === true" (voteDownEvent)="downvoteOffer(offer)" (voteUpEvent)="upvoteOffer(offer)"></ry-vote>
                 <div class="offer-card__content" routerLink="/offers/{{offer.id}}">
-                    <img class="d-block w-100" src="{{'assets/images/no-product-image.png'}}">
+                    <img class="d-block w-100" src="{{offer.coverPath ?? 'assets/images/no-product-image.png'}}">
                     <span class="offer-title my-2">{{offer.title}}</span>
                     <span class="offer-price font-weight-bold">{{offer.price}} €</span>
                 </div>

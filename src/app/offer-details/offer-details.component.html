@@ -1,7 +1,7 @@
 <div *ngIf="offer$ | async as offer" class="container my-4">
     <div class="row">
         <div class="col-4">
-            <img class="offer-cover" src="{{'assets/images/no-product-image.png'}}">
+            <img class="offer-cover" src="{{offer.coverPath ?? 'assets/images/no-product-image.png'}}">
             <ry-vote [voteCount]="offer.voteCount" [disabled]="offer.hasUserVotedForThis === true" (voteDownEvent)="voteDown(offer)" (voteUpEvent)="voteUp(offer)"></ry-vote>
         </div>
         <div class="col-6 d-flex flex-column">

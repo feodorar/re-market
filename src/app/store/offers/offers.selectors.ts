@@ -8,6 +8,7 @@ export const selectOfferState = (state: AppState) => state.offerState;
 export const selectAllOffersSortedByVoted = createSelector(
   selectOfferState,
   (state: OffersState) =>
+    // TODO: sort would be in backend
     state.offers.slice().sort((o1, o2) => {
       return o2.voteCount.valueOf() - o1.voteCount.valueOf();
     })
