@@ -4,9 +4,7 @@ export interface OffersState {
   offers: Offer[];
 }
 
-export interface Offer extends OfferPreview {
-  details?: OfferDetails; // TODO: improve model
-}
+export type Offer = OfferPreview | OfferDetails; // TODO: improve model
 
 export const initialState: OffersState = {
   offers: [],

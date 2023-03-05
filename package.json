@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run start-mockserver & ng serve",
+    "start": "npm run start-wiremock & ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "generate-api": "npx @openapitools/openapi-generator-cli generate -i openapi/remarket-openapi.yml -g typescript-angular -o openapi/generated",
-    "start-mockserver": "prism mock openapi/remarket-openapi.yml"
+    "start-wiremock": "java -jar e2e/wiremock-config/wiremock-standalone.jar --root-dir e2e/wiremock-config --port 9000 --local-response-templating",
+    "start-prism-mockserver": "prism mock openapi/remarket-openapi.yml"
   },
   "private": true,
   "dependencies": {

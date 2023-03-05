@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/offers"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": [
+      {
+        "id": "111",
+        "title": "Foo",
+        "price": 15.4,
+        "voteCount": 1,
+        "hasUserVotedForThis": false
+      },
+      {
+        "id": "222",
+        "title": "Bar",
+        "price": 3.99,
+        "voteCount": 15,
+        "hasUserVotedForThis": true
+      },
+      {
+        "id": "333",
+        "title": "Boo",
+        "price": 11.45,
+        "voteCount": 3,
+        "hasUserVotedForThis": false
+      },
+      {
+        "id": "444",
+        "title": "Far",
+        "price": 29.99,
+        "voteCount": 84,
+        "hasUserVotedForThis": false
+      },
+      {
+        "id": "555",
+        "title": "Thingy",
+        "price": 1.99,
+        "voteCount": 42,
+        "hasUserVotedForThis": true
+      }
+    ]
+  }
+}

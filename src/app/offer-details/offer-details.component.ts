@@ -9,7 +9,7 @@ import {
   actionVoteOffer,
 } from '../store/offers/offers.actions';
 import { AppState } from '../store/root.elements';
-import { Offer } from '../store/offers/offers.model';
+import { OfferDetails } from 'openapi/generated';
 
 @Component({
   selector: 'ry-offer-details',
@@ -17,7 +17,7 @@ import { Offer } from '../store/offers/offers.model';
   styleUrls: ['./offer-details.component.sass'],
 })
 export class OfferDetailsComponent implements OnInit {
-  offer$: Observable<Offer | undefined> = of();
+  offer$: Observable<OfferDetails | undefined> = of();
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
@@ -27,17 +27,17 @@ export class OfferDetailsComponent implements OnInit {
     this.offer$ = this.store.select(selectOfferById(offerId));
   }
 
-  voteUp(offer: Offer): void {
+  voteUp(offer: OfferDetails): void {
     this.store.dispatch(actionVoteOffer({ offerId: offer.id, voteType: 'up' }));
   }
 
-  voteDown(offer: Offer): void {
+  voteDown(offer: OfferDetails): void {
     this.store.dispatch(
       actionVoteOffer({ offerId: offer.id, voteType: 'down' })
     );
   }
 
-  purchaseOffer(offer: Offer): void {
+  purchaseOffer(offer: OfferDetails): void {
     this.store.dispatch(actionPurchaseOffer({ offerId: offer.id }));
   }
 }

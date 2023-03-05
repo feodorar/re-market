@@ -1,13 +1,15 @@
-<div class="container">
+<div class="container my-4">
     <div class="row">
-        <div *ngFor="let offer of offers$ | async" class="col-3 offer-card d-flex flex-column align-items-center p-2 my-3">
-            <ry-vote class="w-100" [voteCount]="offer.voteCount" [disabled]="offer.hasUserVotedForThis === true" (voteDownEvent)="downvoteOffer(offer)" (voteUpEvent)="upvoteOffer(offer)"></ry-vote>
-            <div class="offer-card__content" routerLink="/offers/{{offer.id}}">
-                <img class="d-block w-100" src="{{'assets/images/no-product-image.png'}}">
-                <span class="offer-title my-2">{{offer.title}}</span>
-                <span class="offer-price font-weight-bold">{{offer.price}} €</span>
+        <div *ngFor="let offer of offers$ | async" class="col-2">
+            <div class=" offer-card d-flex flex-column align-items-center">
+                <ry-vote class="w-100" [voteCount]="offer.voteCount" [disabled]="offer.hasUserVotedForThis === true" (voteDownEvent)="downvoteOffer(offer)" (voteUpEvent)="upvoteOffer(offer)"></ry-vote>
+                <div class="offer-card__content" routerLink="/offers/{{offer.id}}">
+                    <img class="d-block w-100" src="{{'assets/images/no-product-image.png'}}">
+                    <span class="offer-title my-2">{{offer.title}}</span>
+                    <span class="offer-price font-weight-bold">{{offer.price}} €</span>
+                </div>
+                <button class="my-2" (click)="purchaseOffer(offer)">Kaufen</button>
             </div>
-            <button class="my-2" (click)="purchaseOffer(offer)">Kaufen</button>
         </div>
     </div>
 </div>

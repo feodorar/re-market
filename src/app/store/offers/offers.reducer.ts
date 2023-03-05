@@ -32,6 +32,7 @@ export const offersReducer = createReducer(
           : {
               ...o,
               voteCount: voteType === 'up' ? o.voteCount + 1 : o.voteCount - 1,
+              hasUserVotedForThis: true,
             }
       ),
     };

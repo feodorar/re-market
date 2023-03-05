@@ -1,4 +1,5 @@
 import { createSelector } from '@ngrx/store';
+import { OfferDetails } from 'openapi/generated';
 import { AppState } from '../root.elements';
 import { OffersState } from './offers.model';
 
@@ -6,10 +7,13 @@ export const selectOfferState = (state: AppState) => state.offerState;
 
 export const selectAllOffersSortedByVoted = createSelector(
   selectOfferState,
-  (state: OffersState) => state.offers
+  (state: OffersState) =>
+    state.offers.slice().sort((o1, o2) => {
+      return o2.voteCount.valueOf() - o1.voteCount.valueOf();
+    })
 );
 
 export const selectOfferById = (offerId: string) =>
   createSelector(selectOfferState, (state: OffersState) => {
-    return state.offers.find((o) => o.id === offerId);
+    return state.offers.find((o) => o.id === offerId) as OfferDetails; // TODO: fix type of Offer in model
   });

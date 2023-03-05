@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/offers/(.*)"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "title": "Thingy thing",
+      "price": 29.99,
+      "voteCount": 35,
+      "hasUserVotedForThis": false,
+      "description": "ahgpiuhegiuhrtgiuhretiguh sludfhituseg aeiufhieu eurhiugiuewg",
+      "merchantName": "Jane Smith"
+    },
+    "transformers": ["response-template"]
+  }
+}

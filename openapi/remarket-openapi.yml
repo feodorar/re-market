@@ -160,7 +160,6 @@ components:
       required:
         - id
         - title
-        - merchantName
         - price
         - voteCount
     OfferDetails:
@@ -174,6 +173,5 @@ components:
       required:
         - id
         - title
-        - merchantName
         - price
         - voteCount

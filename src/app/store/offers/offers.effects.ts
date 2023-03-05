@@ -9,6 +9,7 @@ import {
   catchError,
   switchMap,
   withLatestFrom,
+  tap,
 } from 'rxjs/operators';
 import { actionOpenLoginModal } from '../auth/auth.actions';
 import { selectIsLoggedIn } from '../auth/auth.selectors';
@@ -145,4 +146,21 @@ export class OffersEffects {
   //     })
   //   )
   // );
+
+  handleErrors$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(
+          actionLoadAllOffersError,
+          actionLoadOfferDetailsError,
+          actionPurchaseOfferError,
+          actionVoteOfferError
+        ),
+        tap((action) => {
+          // TODO: log action.error
+          // TODO: display  action.userFriendlyErrorMsg
+        })
+      ),
+    { dispatch: false }
+  );
 }
